@@ -20,7 +20,6 @@ const TodoForm = () => {
       taskComplete: false,
     };
 
-    dispatch(todoAction.addTodo(obj));
     fetch("/api/TodoDb", {
       method: "POST",
       body: JSON.stringify(obj),
@@ -28,6 +27,7 @@ const TodoForm = () => {
         "Content-Type": "application/json",
       },
     });
+    dispatch(todoAction.addTodo(obj));
   };
 
   return (

@@ -1,10 +1,13 @@
 import React from "react";
 import { Col, ListGroup, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import useFetch from "../useFetch";
 
 const Task = () => {
   const todolist = useSelector((state) => state.todo.todoItem);
   const updatedList = todolist.filter((item) => item.taskComplete == true);
+
+  useFetch();
 
   return (
     <div>

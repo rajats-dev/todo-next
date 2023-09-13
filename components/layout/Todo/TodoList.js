@@ -1,14 +1,37 @@
 import { todoAction } from "@/components/store/todo-slice";
 import React from "react";
 import { Button, Col, ListGroup, Row } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import useFetch from "../useFetch";
 
-const TodoList = (props) => {
+const TodoList = () => {
   const dispatch = useDispatch();
+  const todolist = useSelector((state) => state.todo.todoItem);
 
-  const updatedList = props.todolist.filter(
-    (item) => item.taskComplete == false
-  );
+  useFetch();
+
+  const updatedList = todolist.filter((item) => item.taskComplete == false);
+  console.log(updatedList);
+
+  const onDeleteHandler = (id) => {
+    fetch("/api/TodoDb", {
+      method: "DELETE",
+      body: JSON.stringify(id),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  };
+
+  const onUpdateHandler = (id) => {
+    fetch("/api/TodoDb", {
+      method: "PUT",
+      body: JSON.stringify(id),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  };
 
   return (
     <div className="container" style={{ width: "50%", margin: "auto" }}>
@@ -33,6 +56,7 @@ const TodoList = (props) => {
               variant="success"
               onClick={() => {
                 dispatch(todoAction.updateTaskStatus(item));
+                onUpdateHandler(item._id);
               }}
             >
               Done
@@ -41,6 +65,7 @@ const TodoList = (props) => {
               variant="danger"
               onClick={() => {
                 dispatch(todoAction.deleteTodo(item.id));
+                onDeleteHandler(item._id);
               }}
             >
               Delete
