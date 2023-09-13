@@ -21,6 +21,13 @@ const TodoForm = () => {
     };
 
     dispatch(todoAction.addTodo(obj));
+    fetch("/api/TodoDb", {
+      method: "POST",
+      body: JSON.stringify(obj),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
   };
 
   return (

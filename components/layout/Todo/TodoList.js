@@ -1,12 +1,14 @@
 import { todoAction } from "@/components/store/todo-slice";
 import React from "react";
 import { Button, Col, ListGroup, Row } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
-const TodoList = () => {
+const TodoList = (props) => {
   const dispatch = useDispatch();
-  const todolist = useSelector((state) => state.todo.todoItem);
-  const updatedList = todolist.filter((item) => item.taskComplete == false);
+
+  const updatedList = props.todolist.filter(
+    (item) => item.taskComplete == false
+  );
 
   return (
     <div className="container" style={{ width: "50%", margin: "auto" }}>
@@ -35,7 +37,6 @@ const TodoList = () => {
             >
               Done
             </Button>
-
             <Button
               variant="danger"
               onClick={() => {
