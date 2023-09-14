@@ -12,8 +12,11 @@ const Header = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="#home">Todo App</Nav.Link>
-              <Link href="/taskcomplete">
+              <Link href="/today/taskcomplete">
                 <Button variant="success">Completed Task</Button>
+              </Link>
+              <Link href="/today">
+                <Button variant="danger">InComplete Task</Button>
               </Link>
             </Nav>
           </Navbar.Collapse>

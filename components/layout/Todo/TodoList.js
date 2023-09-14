@@ -34,46 +34,49 @@ const TodoList = () => {
   };
 
   return (
-    <div className="container" style={{ width: "50%", margin: "auto" }}>
-      <Row className="container">
-        <Col md={3}>Task</Col>
-        <Col>Description</Col>
-      </Row>
-      {updatedList.map((item) => (
-        <Row key={item.id}>
-          <Col md={8}>
-            <ListGroup>
-              <ListGroup.Item>
-                <Row>
-                  <Col md={5}>{item.task}</Col>
-                  <Col md={5}>{item.description}</Col>
-                </Row>
-              </ListGroup.Item>
-            </ListGroup>
-          </Col>
-          <Col>
-            <Button
-              variant="success"
-              onClick={() => {
-                dispatch(todoAction.updateTaskStatus(item));
-                onUpdateHandler(item._id);
-              }}
-            >
-              Done
-            </Button>
-            <Button
-              variant="danger"
-              onClick={() => {
-                dispatch(todoAction.deleteTodo(item.id));
-                onDeleteHandler(item._id);
-              }}
-            >
-              Delete
-            </Button>
-          </Col>
+    <>
+      <h2 style={{ margin: "2rem 5rem 5rem 5rem" }}>InComplete Task</h2>
+      <div className="container" style={{ width: "50%", margin: "auto" }}>
+        <Row className="container">
+          <Col md={3}>Task</Col>
+          <Col>Description</Col>
         </Row>
-      ))}
-    </div>
+        {updatedList.map((item) => (
+          <Row key={item.id}>
+            <Col md={8}>
+              <ListGroup>
+                <ListGroup.Item>
+                  <Row>
+                    <Col md={5}>{item.task}</Col>
+                    <Col md={5}>{item.description}</Col>
+                  </Row>
+                </ListGroup.Item>
+              </ListGroup>
+            </Col>
+            <Col>
+              <Button
+                variant="success"
+                onClick={() => {
+                  dispatch(todoAction.updateTaskStatus(item));
+                  onUpdateHandler(item._id);
+                }}
+              >
+                Done
+              </Button>
+              <Button
+                variant="danger"
+                onClick={() => {
+                  dispatch(todoAction.deleteTodo(item.id));
+                  onDeleteHandler(item._id);
+                }}
+              >
+                Delete
+              </Button>
+            </Col>
+          </Row>
+        ))}
+      </div>
+    </>
   );
 };
 

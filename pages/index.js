@@ -10,7 +10,6 @@ export default function Home() {
       <hr></hr>
       <TodoForm />
       <hr></hr>
-      <TodoList />
     </Fragment>
   );
 }
